@@ -1,0 +1,2 @@
+# pw-docker
+Deploy wordpress application with phpmyadmin and mysl using docker.
