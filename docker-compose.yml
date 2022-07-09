@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mysql:
+    images: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=bdwpkuasai
+      - MYSQL_USER=cilsykuasaiuser
+      - MYSQL_PASSWORD=cilsykuasaipassword
+    volumes:
+      -db_mysql:/var/lib/mysql
+  
+  phpmyadmin:
+    image: pandudw/phpmyadmin-custom
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    restart: always #what mean restart?
+    ports:
+      -8081:80
+
+  wordpress:
+    image: wordpress:4.9.8-php7.2-apache
+    container_name: wordpress
+    ports:
+      -80:80
+    volumes:
+      -./file-web/wordpresskuasai:/var/www/html
+
+volumes:
+  db_mysql:
