@@ -19,7 +19,7 @@ services:
     environment:
       - PMA_HOST=mysql
       - PMA_PORT=3306
-    restart: always #what mean restart?
+    restart: always
     ports:
       -8081:80
 
